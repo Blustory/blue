@@ -1,7 +1,7 @@
 [project]
 name = "flask-learning"
 version = "0.1.0"
-description = "Add your description here"
+description = "This project focuses on growth of knowledge using flask, uv, and python API requests"
 readme = "README.md"
 authors = [
     { name = "THE BLUE STORY", email = "blustory.g@gmail.com" }

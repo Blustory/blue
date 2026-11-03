@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block title %}Index Page{% endblock %}
+
+{% block content %}
+    <h1>Welcome to the Index Page</h1>
+    <p>Name: {{ name }}</p>
+    <p>Height: {{ height }} cm</p>
+    <div>
+        <h2>I am able to do the following:</h2>
+        <ul>
+            {% for skill in skills %}
+                <li {% if skill == "basketball" or skill == "football" %}style = "color:crimson;font-weight:bold;font-size: 20px;"{% endif %}>{{ skill }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+    <a href="{{ url_for('another') }}">Go to Another Page</a>
+{% endblock %}

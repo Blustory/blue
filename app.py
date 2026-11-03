@@ -1,32 +1,46 @@
-from flask import Flask
+from flask import Flask, render_template, redirect, url_for
 
-app = Flask(__name__)
+app = Flask(__name__, template_folder="templates")
 
 
 @app.route("/")
 def home():
-    return """<h1 style = "color:red;">Welcome home</h1>"""
+    name = "John Doe"
+    height = 185
+    skills = [
+        "basketball",
+        "coding",
+        "reading",
+        "minecraft",
+        "gaming",
+        "football",
+        "swimming",
+        "tennis",
+        "volleyball",
+    ]
+    return render_template("index.html", name=name, height=height, skills=skills)
 
 
-@app.route("/contact:<name>")
-def contact(name):
-    return f"Hello {name} contact us at <i>Blustory.g@gmail.com</i>"
+@app.route("/another")
+def another():
+    r_text = "This is another page"
+    return render_template("another.html", r_text=r_text)
 
 
-@app.route("/about")
-def about():
-    return """<b style = "color:red;">We Sell drugs</b>"""
+@app.route("/something")
+def something():
+    return redirect(url_for("home"))
 
 
-@app.route("/products")
-def products():
-    return """<ul>
-    <li>Lean</li>
-    <li>Cocaine</li>
-    <li>Juana</li>
-    <li>Weed</li>
-    </ul"""
+@app.template_filter("mixup")
+def mixup(s):
+    return s[::-1]
+
+
+@app.template_filter("add_67")
+def add_67(s):
+    return 67
 
 
 if __name__ == "__main__":
-    app.run(port=2323, debug=False, host="0.0.0.0")
+    app.run(port=2323, debug=True, host="0.0.0.0")
